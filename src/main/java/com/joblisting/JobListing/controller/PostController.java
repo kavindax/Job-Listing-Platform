@@ -3,6 +3,7 @@ package com.joblisting.JobListing.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import com.repository.SearchRepository;
 import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class PostController {
 
     @Autowired
@@ -30,7 +32,8 @@ public class PostController {
         response.sendRedirect("/posts");
     }
 
-    @GetMapping("/posts")
+    @GetMapping("/allPosts")
+    @CrossOrigin 
     public List<Post>  getAllPosts(){
         
         return postRepository.findAll();
